@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    
+    private int posicion = 0; // -1 izquierda, 0 centro, 1 derecha // >>> AGREGADO
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +15,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            transform.Translate(2f,0,0);
+            if (posicion < 1) // >>> AGREGADO
+            {
+                posicion++; // >>> AGREGADO
+                transform.Translate(2f, 0, 0);
+            }
         }
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            transform.Translate(-2f,0,0);
-        }
+            if (posicion > -1) // >>> AGREGADO
+            {
+                posicion--; // >>> AGREGADO
+                transform.Translate(-2f, 0, 0);
+            }
     }
+  }
 }
